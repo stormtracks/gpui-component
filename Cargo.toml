@@ -5,6 +5,9 @@ default-members = ["crates/app"]
 resolver = "2"
 
 [workspace.dependencies]
+
+command_palette = { git = "https://github.com/huacnlee/zed.git", branch = "export-platform-window" }
+command_palette_hooks = { git = "https://github.com/huacnlee/zed.git", branch = "export-platform-window" }
 gpui = { git = "https://github.com/huacnlee/zed.git", branch = "export-platform-window" }
 settings = { git = "https://github.com/huacnlee/zed.git", branch = "export-platform-window" }
 rust-embed = { version = "8.4", features = ["include-exclude"] }

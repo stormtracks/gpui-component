@@ -14,6 +14,8 @@ mod story_workspace;
 actions!(main_menu, [Quit]);
 
 fn init(app_state: Arc<AppState>, cx: &mut AppContext) -> Result<()> {
+    settings::init(cx);
+    command_palette::init(cx);
     story_workspace::init(app_state.clone(), cx);
 
     cx.bind_keys([KeyBinding::new("cmd-q", Quit, None)]);
@@ -40,7 +42,10 @@ fn main() {
         cx.set_menus(vec![
             Menu {
                 name: "GPUI App".into(),
-                items: vec![MenuItem::action("Quit", Quit)],
+                items: vec![
+                    MenuItem::action("Quit", Quit),
+                    MenuItem::action("Command Palette...", command_palette::Toggle),
+                ],
             },
             Menu {
                 name: "Edit".into(),
