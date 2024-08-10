@@ -6,6 +6,8 @@ resolver = "2"
 
 [workspace.dependencies]
 gpui = { git = "https://github.com/huacnlee/zed.git", branch = "export-platform-window" }
+settings = { git = "https://github.com/huacnlee/zed.git", branch = "export-platform-window" }
+rust-embed = { version = "8.4", features = ["include-exclude"] }
 ui = { path = "crates/ui" }
 story = { path = "crates/story" }
 workspace = { path = "crates/workspace" }
