@@ -69,5 +69,5 @@ fn quit(_: &Quit, cx: &mut AppContext) {
 }
 
 fn load_storybook_keymap(cx: &mut AppContext) {
-    KeymapFile::load_asset("keymaps/storybook.json", cx).unwrap();
+    KeymapFile::load_asset("keymaps/default-macos.json", cx).unwrap();
 }
