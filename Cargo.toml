@@ -5,7 +5,9 @@ default-members = ["crates/app"]
 resolver = "2"
 
 [workspace.dependencies]
-gpui = { git = "https://github.com/huacnlee/zed.git", branch = "export-platform-window" }
+gpui = { git = "https://github.com/stormasm/zed.git", branch = "settings" }
+settings = { git = "https://github.com/stormasm/zed", branch = "settings" }
+rust-embed = { version = "8.4", features = ["include-exclude"] }
 ui = { path = "crates/ui" }
 story = { path = "crates/story" }
 workspace = { path = "crates/workspace" }
