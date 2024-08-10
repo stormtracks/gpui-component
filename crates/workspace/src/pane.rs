@@ -12,9 +12,9 @@ use anyhow::Result;
 use gpui::{
     actions, div, impl_actions, prelude::FluentBuilder as _, px, AppContext, DefiniteLength,
     DragMoveEvent, Element as _, EntityId, EventEmitter, FocusHandle, FocusOutEvent, FocusableView,
-    InteractiveElement as _, IntoElement, KeyBinding, KeyContext, ParentElement, Pixels, Point,
-    Render, ScrollHandle, StatefulInteractiveElement, Styled, Subscription, Task, View,
-    ViewContext, VisualContext as _, WeakFocusHandle, WeakView, WindowContext,
+    InteractiveElement as _, IntoElement, KeyContext, ParentElement, Pixels, Point, Render,
+    ScrollHandle, StatefulInteractiveElement, Styled, Subscription, Task, View, ViewContext,
+    VisualContext as _, WeakFocusHandle, WeakView, WindowContext,
 };
 use serde::Deserialize;
 
@@ -824,7 +824,8 @@ impl Render for Pane {
             key_context.add("EmptyPane");
         }
 
-        cx.bind_keys([KeyBinding::new("cmd-w", CloseActiveItem, Some("Pane"))]);
+        // Uncomment to enable closing panes with cmd-w if the keymap file is not present.
+        //cx.bind_keys([KeyBinding::new("cmd-w", CloseActiveItem, Some("Pane"))]);
 
         let should_display_tab_bar = self.should_display_tab_bar.clone();
         let display_tab_bar = should_display_tab_bar(cx);
