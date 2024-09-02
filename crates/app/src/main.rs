@@ -4,6 +4,7 @@ use anyhow::Result;
 use app_state::AppState;
 use assets::Assets;
 use gpui::{actions, App, AppContext, KeyBinding, Menu, MenuItem};
+use settings::KeymapFile;
 use ui::input::{Copy, Cut, Paste, Redo, Undo};
 
 mod app_state;
@@ -34,6 +35,7 @@ fn main() {
         }
 
         cx.on_action(quit);
+        load_keymap(cx);
 
         cx.set_menus(vec![
             Menu {
@@ -63,4 +65,8 @@ fn main() {
 
 fn quit(_: &Quit, cx: &mut AppContext) {
     cx.quit();
+}
+
+fn load_keymap(cx: &mut AppContext) {
+    KeymapFile::load_asset("keymaps/default-macos.json", cx).unwrap();
 }

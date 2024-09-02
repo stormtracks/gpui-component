@@ -14,7 +14,6 @@ mod switch_story;
 mod table_story;
 mod text_story;
 mod tooltip_story;
-mod webview_story;
 
 use std::sync::Arc;
 
@@ -34,7 +33,6 @@ pub use switch_story::SwitchStory;
 pub use table_story::TableStory;
 pub use text_story::TextStory;
 pub use tooltip_story::TooltipStory;
-pub use webview_story::WebViewStory;
 
 use gpui::{
     actions, div, prelude::FluentBuilder as _, px, AnyView, AppContext, Div, EventEmitter,

@@ -691,7 +691,8 @@ where
                             view.delegate.load_more(cx);
                         })
                     })
-                }).detach()
+                })
+                .detach()
             }
         }
     }
