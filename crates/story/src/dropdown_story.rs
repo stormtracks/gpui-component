@@ -105,7 +105,10 @@ impl DropdownStory {
         });
 
         cx.new_view(|cx| {
-            cx.subscribe(&country_dropdown, Self::on_dropdown_event)
+            cx.subscribe(&country_dropdown, Self::on_country_dropdown_event)
+                .detach();
+
+            cx.subscribe(&fruit_dropdown, Self::on_fruit_dropdown_event)
                 .detach();
 
             Self {
@@ -162,7 +165,7 @@ impl DropdownStory {
         Self::new(cx)
     }
 
-    fn on_dropdown_event(
+    fn on_country_dropdown_event(
         &mut self,
         _: View<Dropdown<Vec<Country>>>,
         event: &DropdownEvent<Vec<Country>>,
@@ -170,6 +173,17 @@ impl DropdownStory {
     ) {
         match event {
             DropdownEvent::Confirm(value) => println!("Selected country: {:?}", value),
+        }
+    }
+
+    fn on_fruit_dropdown_event(
+        &mut self,
+        _: View<Dropdown<SearchableVec<SharedString>>>,
+        event: &DropdownEvent<SearchableVec<SharedString>>,
+        _cx: &mut ViewContext<Self>,
+    ) {
+        match event {
+            DropdownEvent::Confirm(value) => println!("Selected fruit: {:?}", value),
         }
     }
 
