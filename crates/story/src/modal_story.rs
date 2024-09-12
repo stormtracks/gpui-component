@@ -2,9 +2,9 @@ use std::{sync::Arc, time::Duration};
 
 use fake::Fake;
 use gpui::{
-    actions, div, prelude::FluentBuilder as _, px, FocusHandle, FocusableView,
-    InteractiveElement as _, IntoElement, ParentElement, Render, SharedString, Styled, Task, Timer,
-    View, ViewContext, VisualContext as _, WeakView, WindowContext,
+    actions, div, prelude::FluentBuilder as _, px, AppContext, FocusHandle, FocusableView,
+    InteractiveElement as _, IntoElement, KeyBinding, ParentElement, Render, SharedString, Styled,
+    Task, Timer, View, ViewContext, VisualContext as _, WeakView, WindowContext,
 };
 
 use ui::{
@@ -19,7 +19,12 @@ use ui::{
     v_flex, ContextModal as _, Icon, IconName, Placement,
 };
 
-actions!(modal_story, [TestAction]);
+actions!(modal_story, [TestAction, ToggleModal]);
+
+const CONTEXT: &str = "ModalStory";
+pub fn init(cx: &mut AppContext) {
+    cx.bind_keys([KeyBinding::new("cmd-p", ToggleModal, Some(CONTEXT))])
+}
 
 pub struct ListItemDeletegate {
     story: WeakView<ModalStory>,
@@ -405,8 +410,10 @@ impl Render for ModalStory {
     fn render(&mut self, cx: &mut ViewContext<Self>) -> impl IntoElement {
         div()
             .id("modal-story")
+            .key_context(CONTEXT)
             .track_focus(&self.focus_handle)
             .on_action(cx.listener(Self::on_action_test_action))
+            .on_action(cx.listener(|this, _: &ToggleModal, cx| this.show_modal(cx)))
             .size_full()
             .child(
                 v_flex()

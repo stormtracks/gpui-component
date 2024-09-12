@@ -56,6 +56,7 @@ use ui::{
 pub fn init(cx: &mut AppContext) {
     input_story::init(cx);
     dropdown_story::init(cx);
+    modal_story::init(cx);
     popup_story::init(cx);
 
     register_panel(cx, "StoryContainer", |_, info, cx| {
