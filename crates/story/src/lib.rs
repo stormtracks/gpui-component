@@ -14,7 +14,6 @@ mod switch_story;
 mod table_story;
 mod text_story;
 mod tooltip_story;
-mod webview_story;
 
 pub use button_story::ButtonStory;
 pub use calendar_story::CalendarStory;
@@ -33,7 +32,6 @@ pub use switch_story::SwitchStory;
 pub use table_story::TableStory;
 pub use text_story::TextStory;
 pub use tooltip_story::TooltipStory;
-pub use webview_story::WebViewStory;
 
 use gpui::{
     actions, div, prelude::FluentBuilder as _, px, AnyElement, AnyView, AppContext, Div,
@@ -239,7 +237,6 @@ impl StoryState {
             "TableStory" => story!(TableStory),
             "TextStory" => story!(TextStory),
             "TooltipStory" => story!(TooltipStory),
-            "WebViewStory" => story!(WebViewStory),
             _ => {
                 unreachable!("Invalid story klass: {}", self.story_klass)
             }
