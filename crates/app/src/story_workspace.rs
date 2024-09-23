@@ -149,69 +149,17 @@ impl StoryWorkspace {
     fn init_default_layout(dock_area: &WeakView<DockArea>, cx: &mut WindowContext) -> DockItem {
         DockItem::split_with_sizes(
             Axis::Horizontal,
-            vec![
-                /*
-
-                                DockItem::split(
-                                    Axis::Vertical,
-                                    vec![
-                                        DockItem::tab(StoryContainer::panel::<IconStory>(cx), &dock_area, cx),
-                                        DockItem::tab(StoryContainer::panel::<CalendarStory>(cx), &dock_area, cx),
-                                    ],
-                                    &dock_area,
-                                    cx,
-                                ),
-                                DockItem::split_with_sizes(
-                                    Axis::Vertical,
-                                    vec![
-                                        DockItem::tabs(
-                                            vec![
-                                                Arc::new(StoryContainer::panel::<ButtonStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<InputStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<DropdownStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<ModalStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<PopupStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<ListStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<SwitchStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<ProgressStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<TableStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<ImageStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<ResizableStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<ScrollableStory>(cx)),
-                                            ],
-                                            None,
-                                            &dock_area,
-                                            cx,
-                                        ),
-                                        DockItem::tabs(
-                                            vec![
-                                                Arc::new(StoryContainer::panel::<ProgressStory>(cx)),
-                                                Arc::new(StoryContainer::panel::<TextStory>(cx)),
-                                            ],
-                                            None,
-                                            &dock_area,
-                                            cx,
-                                        ),
-                                    ],
-                                    vec![None, None, Some(px(300.))],
-                                    &dock_area,
-                                    cx,
-                                ),
-
-
-                */
-                DockItem::split_with_sizes(
-                    Axis::Vertical,
-                    vec![DockItem::tab(
-                        StoryContainer::panel::<TooltipStory>(cx),
-                        &dock_area,
-                        cx,
-                    )],
-                    vec![None, None, Some(px(300.))],
+            vec![DockItem::split_with_sizes(
+                Axis::Vertical,
+                vec![DockItem::tab(
+                    StoryContainer::panel::<TooltipStory>(cx),
                     &dock_area,
                     cx,
-                ),
-            ],
+                )],
+                vec![None, None, Some(px(300.))],
+                &dock_area,
+                cx,
+            )],
             vec![Some(px(300.)), None, Some(px(350.))],
             &dock_area,
             cx,
