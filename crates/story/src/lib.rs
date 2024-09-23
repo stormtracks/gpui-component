@@ -1,39 +1,6 @@
-mod button_story;
-mod calendar_story;
-mod dropdown_story;
-mod icon_story;
-mod image_story;
-mod input_story;
-mod list_story;
-mod modal_story;
-mod popup_story;
-mod progress_story;
-mod resizable_story;
-mod scrollable_story;
-mod switch_story;
-mod table_story;
-mod text_story;
 mod tooltip_story;
-mod webview_story;
 
-pub use button_story::ButtonStory;
-pub use calendar_story::CalendarStory;
-pub use dropdown_story::DropdownStory;
-pub use icon_story::IconStory;
-pub use image_story::ImageStory;
-pub use input_story::InputStory;
-pub use list_story::ListStory;
-pub use modal_story::ModalStory;
-pub use popup_story::PopupStory;
-pub use progress_story::ProgressStory;
-pub use resizable_story::ResizableStory;
-pub use scrollable_story::ScrollableStory;
-use serde::{Deserialize, Serialize};
-pub use switch_story::SwitchStory;
-pub use table_story::TableStory;
-pub use text_story::TextStory;
 pub use tooltip_story::TooltipStory;
-pub use webview_story::WebViewStory;
 
 use gpui::{
     actions, div, prelude::FluentBuilder as _, px, AnyElement, AnyView, AppContext, Div,
@@ -54,10 +21,6 @@ use ui::{
 };
 
 pub fn init(cx: &mut AppContext) {
-    input_story::init(cx);
-    dropdown_story::init(cx);
-    popup_story::init(cx);
-
     register_panel(cx, "StoryContainer", |_, info, cx| {
         let story_state = match info {
             DockItemInfo::Panel(value) => StoryState::from_value(value),
@@ -195,6 +158,9 @@ impl StoryContainer {
     }
 }
 
+use serde::Deserialize;
+use serde::Serialize;
+//#[derive(Debug, Serialize, Deserialize)]
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StoryState {
     pub story_klass: SharedString,
@@ -223,23 +189,7 @@ impl StoryState {
         }
 
         match self.story_klass.to_string().as_str() {
-            "ButtonStory" => story!(ButtonStory),
-            "CalendarStory" => story!(CalendarStory),
-            "DropdownStory" => story!(DropdownStory),
-            "IconStory" => story!(IconStory),
-            "ImageStory" => story!(ImageStory),
-            "InputStory" => story!(InputStory),
-            "ListStory" => story!(ListStory),
-            "ModalStory" => story!(ModalStory),
-            "PopupStory" => story!(PopupStory),
-            "ProgressStory" => story!(ProgressStory),
-            "ResizableStory" => story!(ResizableStory),
-            "ScrollableStory" => story!(ScrollableStory),
-            "SwitchStory" => story!(SwitchStory),
-            "TableStory" => story!(TableStory),
-            "TextStory" => story!(TextStory),
             "TooltipStory" => story!(TooltipStory),
-            "WebViewStory" => story!(WebViewStory),
             _ => {
                 unreachable!("Invalid story klass: {}", self.story_klass)
             }
