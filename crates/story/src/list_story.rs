@@ -184,7 +184,6 @@ impl ListDelegate for CompanyListDelegate {
             })
             .collect::<Vec<_>>();
 
-
         let element = v_flex()
             .p_4()
             .child(
